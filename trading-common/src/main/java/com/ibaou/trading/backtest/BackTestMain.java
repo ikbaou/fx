@@ -19,12 +19,14 @@ public class BackTestMain {
 	public static void main(String[] args) throws InterruptedException {
 		// I need ticks
 		System.out.println("filling up OHCLs");
+		Long t0 = System.currentTimeMillis();
 		Queue<OHLCTick> ticks = new PriorityQueue<>();
-		for (int i = 0; i < 10_000; i++) {
+		for (int i = 0; i < 1_000_000; i++) {
 			ticks.add(new OHLCTick(Instant.now(), "EURUSD", BigDecimal.valueOf(1.1), BigDecimal.valueOf(1.3),
 					BigDecimal.valueOf(1.1), BigDecimal.valueOf(1.2), BigDecimal.valueOf(1500)));
-			Thread.sleep(1);
+			Thread.sleep(0,100);
 		}
+		System.out.println("filling end: " + (System.currentTimeMillis() - t0) + " ms");
 		// an account or more
 		Account acc = new Account.Builder().setCurrency("EUR").setBalance(BigDecimal.valueOf(10_000))
 				.setMargin(BigInteger.valueOf(100)).setLotSize(BigInteger.valueOf(10_000)).build();
