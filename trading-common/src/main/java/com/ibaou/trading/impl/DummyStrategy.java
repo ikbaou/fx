@@ -1,10 +1,15 @@
 package com.ibaou.trading.impl;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ibaou.trading.common.domain.TradingContext;
 import com.ibaou.trading.domain.OHLCTick;
 import com.ibaou.trading.iface.Strategy;
 
 public class DummyStrategy extends AbstractStrategy implements Strategy{
+	
+	private static Logger LOG = LoggerFactory.getLogger(DummyStrategy.class);
 
 	@Override
 	public void onStart(TradingContext context) {
@@ -14,7 +19,7 @@ public class DummyStrategy extends AbstractStrategy implements Strategy{
 
 	@Override
 	public void onTick(OHLCTick tick) {
-		//System.out.println("DummyStrategy tick: " + tick);
+		LOG.trace("tick: {}", tick);
 	}
 
 	@Override
